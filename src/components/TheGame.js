@@ -25,7 +25,7 @@ class Background extends Component {
         }
     }
     showmsg = () => {
-        alert('Wrong! Please try again.');
+        alert('Sorry! Please try again.');
 
     }             
     
