@@ -20,9 +20,9 @@ class Background extends Component {
     
     matchCity = () => {
         for (let i=0; this.state.CityList.length > i; i++) {             
-            if (this.state.CityList[i].name === this.ref.current.id) {
-                console.log(this.ref.current.id)
-                console.log('You picked ' + this.ref.current.id);
+            if (this.state.CityList[i].name === this.ref.current.className) {
+
+                console.log('You picked ' + this.ref.current.className);
             }
             else {
                 console.log('Sorry! Please try again.');
@@ -42,7 +42,7 @@ class Background extends Component {
                 </h3>
                 <Image src='https://simplemaps.com/static/svg/lv/lv.svg' style={{height:'100%', marginLeft:'5%', }} />
 
-                <div ref = {this.ref} id='Liepaja' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Liepaja' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '70.5%',
@@ -51,7 +51,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
 
-                <div ref = {this.ref} id='Riga' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Riga' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '54.5%',
@@ -60,7 +60,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Jurmala' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Jurmala' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '54%',
@@ -69,7 +69,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Ventspils' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Ventspils' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '37.5%',
@@ -78,7 +78,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Daugavpils' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Daugavpils' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '96.8%',
@@ -87,7 +87,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Jelgave' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Jelgave' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '67%',
@@ -96,7 +96,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Valmiera' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Valmiera' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '32%',
@@ -105,7 +105,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Aluksne' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Aluksne' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '36%',
@@ -114,7 +114,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Saldus' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Saldus' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '67%',
@@ -123,7 +123,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Kraslava' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Kraslava' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '91.7%',
@@ -133,7 +133,7 @@ class Background extends Component {
 
                 </div>
                 
-                <div ref = {this.ref} id='Rezekne' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Rezekne' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '69.7%',
@@ -142,7 +142,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Jekabpils' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Jekabpils' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '69.7%',
@@ -151,7 +151,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Kuldiga' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Kuldiga' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '52.2%',
@@ -160,7 +160,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Ogre' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Ogre' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '61.5%',
@@ -169,7 +169,7 @@ class Background extends Component {
                     <i className=' large red red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Ainazi' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Ainazi' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '19.5%',
@@ -178,13 +178,13 @@ class Background extends Component {
                     <i className=' large red red map marker alternate icon'></i>
                 </div>
                 
-                <div ref = {this.ref} id='Madona' onClick={this.matchCity} style={{
+                <div ref = {this.ref} className='Madona' onClick={this.matchCity} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '59%',
                 left: '58.3%',
                 }}>
-                    <i className=' large red red map marker alternate icon'></i>
+                Madona <i className=' large red red map marker alternate icon'></i>
 
                 </div>
                 
