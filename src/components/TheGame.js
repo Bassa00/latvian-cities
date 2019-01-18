@@ -16,7 +16,6 @@ class Background extends Component {
         for (let i=0; this.state.CityList.length > i; i++) {             
             if (this.state.CityList[i].name === this.ref.id) {
                 alert('You picked correct location.');
-
             }
             else {
                 alert('Bravo! Select next city ');
