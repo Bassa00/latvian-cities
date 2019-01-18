@@ -11,11 +11,6 @@ class Background extends Component {
     }
 
 //Functions
-
-    const = this.ref = React.createRef();
-    show = () => this.setState({ open: true })
-    handleConfirm = () => this.setState({ open: false })
-    handleCancel = () => this.setState({ open: false })
     
     matchCity = () => {
         for (let i=0; this.state.CityList.length > i; i++) {             
