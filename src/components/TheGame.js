@@ -20,7 +20,7 @@ class Background extends Component {
     matchCity = (city) => {
         this.state.CityList.forEach((cityList) => {
             if (cityList.name === city) {
-                console.log('You picked ' + city);
+                console.log('You picked city' + city);
             }
             else {
                 console.log('Sorry! Please try again.');
