@@ -26,8 +26,8 @@ class Background extends Component {
                 console.log('Sorry! Please try again.');
             }
         })
-    }          
-    
+    }
+
 //END FUNCTIONS
 
     render() {
