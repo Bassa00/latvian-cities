@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Grid, Image, Segment, List, Input} from 'semantic-ui-react';
+import { Grid, Image, Input, List, Segment} from 'semantic-ui-react';
+
 class Background extends Component {
 
     constructor (props) {
@@ -15,7 +16,6 @@ class Background extends Component {
     }
 
 //Functions
-
     matchCity = (city) => {
         this.state.CityList.forEach((cityList) => {
             if (cityList.name === city) {
@@ -179,7 +179,7 @@ class Background extends Component {
                 top: '59%',
                 left: '58.3%',
                 }}>
-                Madona <i className=' large red red map marker alternate icon'></i>
+                    <i className=' large red red map marker alternate icon'></i>
 
                 </div>
 
