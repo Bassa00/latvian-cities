@@ -27,7 +27,7 @@ class Background extends Component {
             }
         })
     }
-  }}
+
 
 //END FUNCTIONS
 
