@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Grid, Image, Segment, List, Input} from 'semantic-ui-react';
-
 class Background extends Component {
 
     constructor (props) {
@@ -27,7 +26,6 @@ class Background extends Component {
             }
         })
     }
-
 
 //END FUNCTIONS
 
@@ -203,8 +201,7 @@ class Background extends Component {
                     </Grid>
                 </div>
 
-{/**Display cities */}
-
+{/**City list */}
                 <div className='cityList' style={{
                 position: 'absolute',
                 textAlign: 'right',
@@ -258,6 +255,7 @@ class Background extends Component {
                     </Segment>
                 </div>
 
+{/**Marks */}
                 <div className='output' style={{
                     position: 'absolute',
                     textAlign: 'right',
