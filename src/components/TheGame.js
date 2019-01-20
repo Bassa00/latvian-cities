@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Grid, Image, Input, List, Segment} from 'semantic-ui-react';
+import { Object } from 'core-js';
 
 class Background extends Component {
 
@@ -19,9 +20,18 @@ class Background extends Component {
     matchCity = (city) => {
         this.state.CityList.forEach((cityList) => {
             if (cityList.name === city) {
-                console.log('You picked city' + city);
+                console.log('You picked city ' + city);
+            }
+            else {
+                console.log('Sorry! Please try again.');
             }
         })
+    }
+
+    deleteCity = (index, e) => {
+        const delCity = Object.assign([], this.state.CityList)
+        delCity.splice(index, 1);
+        this.setState({CityList: delCity})
     }
 
 //END FUNCTIONS
@@ -33,7 +43,7 @@ class Background extends Component {
                     Latvia
                 </h3>
                 <Image src='https://simplemaps.com/static/svg/lv/lv.svg' style={{height:'100%', marginLeft:'5%', }} />
-
+                
                 <div onClick = {this.matchCity.bind(this, 'Liepaja')} style={{
                 position: 'absolute',
                 textAlign: 'right',
@@ -176,7 +186,7 @@ class Background extends Component {
                 top: '59%',
                 left: '58.3%',
                 }}>
-                    <i className=' large red red map marker alternate icon'></i>
+                        <i className=' large red red map marker alternate icon'></i>
 
                 </div>
 
@@ -209,46 +219,18 @@ class Background extends Component {
                     <Segment inverted size='big'>
                         <List inverted divided relaxed>
                             {
-                                this.state.CityList.map((list) => {
-                                    return (<List.Item key={list.id}>{list.name}</List.Item>)
+                                this.state.CityList.map((list, id) => {
+                                    return ( 
+                                        <List.Item 
+                                            delcity = {this.deleteCity.bind(this, id)}
+                                            key = {list.id}
+                                        >
+                                            {list.name} 
+                                        </List.Item>
+                                            )
                                 })
                             }
                         </List>
-
-
-                            {/**<List.Item id='0'>Liepaja<Popup trigger={<Icon circular name='tag' />} content='Area: 60.4 km² | Population: 69,443 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id='1'>Kuldiga<Popup trigger={<Icon circular name='tag' />} content='Area: 13.2 km² | Postal code: LV-330(1–3)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '2'>Saldus<Popup trigger={<Icon circular name='tag' />} content='Area: 10.1 km² | Population: 10,311 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '3'>Ventspils<Popup trigger={<Icon circular name='tag' />} content='Area: 55.4 km² | Population: 35,362 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '4'>Jurmala<Popup trigger={<Icon circular name='tag' />} content='Area: 100 km² | Population: 48,606 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '5'>Jelgava<Popup trigger={<Icon circular name='tag' />} content='Area: 63 km² | Population: 56,743 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '6'>Riga<Popup trigger={<Icon circular name='tag' />} content='Area: 304 km² | Population: 641,423 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '7'>Ainazi<Popup trigger={<Icon circular name='tag' />} content='Area: 5 km² | Population: 711 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '8'>Ogre<Popup trigger={<Icon circular name='tag' />} content='Area: 13.58 km² | Population: 23,533 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '9'>Valmiera<Popup trigger={<Icon circular name='tag' />} content='Area: 19.35 km² | Population: 22,961 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '10'>Jekabpils<Popup trigger={<Icon circular name='tag' />} content='Area: 23 km² | Population: 22,412 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '11'>Madona<Popup trigger={<Icon circular name='tag' />} content='Area: 10.5 km² | Postal code: LV-4801 ' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '12'>Draugavpils<Popup trigger={<Icon circular name='tag' />} content='Area: 72.48 km² | Population: 84,592 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '13'>Aluksne<Popup trigger={<Icon circular name='tag' />} content='Area: 14.23 km² | Population: 6,930 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '14'>Rezekne<Popup trigger={<Icon circular name='tag' />} content='Area: 17.48 km² | Population: 28,174 (2017)' size='mini'/>
-                            </List.Item>
-                            <List.Item id= '15'>Kraslava<Popup trigger={<Icon circular name='tag' />} content='Area: 8.5 km² | Population: 7,978 (2017)' size='mini'/>
-                            </List.Item>
-                        </List>*/}
                     </Segment>
                 </div>
 
