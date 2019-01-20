@@ -3,20 +3,15 @@ import { Grid, Image, Input, List, Segment} from 'semantic-ui-react';
 
 class Background extends Component {
 
-    constructor (props) {
-        super (props)
-            this.ref = React.createRef();
-    }
-
     state = {
         CityList: [
-            {id: 1, name:'Liepaja'},{id: 2, name:'Kuldiga'},{id: 3, name:'Saldus'},{id: 4, name:'Ventspils'}, {id: 5, name:'Jurmala'}, {id: 6, name:'Jelgava'}, {id: 7, name:'Riga'}, {id: 8, name:'Ainazi'}, {id: 9, name:'Ogre'}, {id: 10, name:'Valmiera'}, {id: 11, name:'Jekabpils'},{id: 12, name:'Madona'},{id: 13, name:'Draugavpils'},{id: 14, name:'Aluksne'},{id: 15, name:'Rezekne'},{id: 16, name:'Kraslava'}
+            { id: 0, name: 'Liepaja' }, { id: 1, name: 'Kuldiga' }, { id: 2, name: 'Saldus' }, { id: 3, name: 'Ventspils' }, { id: 4, name: 'Jurmala' }, { id: 5, name: 'Jelgava' }, { id: 6, name: 'Riga' }, { id: 7, name: 'Ainazi' }, { id: 8, name: 'Ogre' }, { id: 9, name: 'Valmiera' }, { id: 10, name: 'Jekabpils' }, { id: 11, name: 'Madona' }, { id: 12, name:'Daugavpils'},{id: 13, name:'Aluksne'},{id: 14, name:'Rezekne'},{id: 15, name:'Kraslava'}
         ],
     }
 
-//FUNCTION
+/********************************************FUNCTION*********************************/
 
-    deleteCity = (index, e) => {
+    deleteCity = (index) => {
         const del = Object.assign([], this.state.CityList)
         del.splice(index, 1);
         this.setState({CityList: del})
@@ -25,17 +20,18 @@ class Background extends Component {
     matchCity = (city) => {
         this.state.CityList.forEach((cityList) => {
             if (cityList.name === city) {
-                alert('You picked city: ' + city );
-                this.deleteCity.bind(this, cityList.id);
+                alert('You picked city: ' + city + ' Select "OK" to remove it from the list' );
+                this.deleteCity(cityList.id);
             }
         })
     }
-
+/*************************************END FUNCTIONS*****************************************/
     render() {
         return (
             <div>
 
-{ /**MAIN MAP */ }
+{ /*********************************MAIN MAP*************************************************/ }
+
                 <div className = 'latvianMap' >
                     <h3 style={{fontSize: '60px', color: 'red', marginLeft:'2%'}}>
                         Latvia
@@ -43,7 +39,7 @@ class Background extends Component {
                     <Image src='https://simplemaps.com/static/svg/lv/lv.svg' style={{height:'100%', marginLeft:'5%', }} />
                 </div>
 
-{/**CITY LIST */}
+{/*****************************************CITY LIST*********************************************/}
                 <div className='cityList' style={{
                 position: 'absolute',
                 textAlign: 'right',
@@ -53,9 +49,9 @@ class Background extends Component {
 
                     <Segment inverted size='big'>
                         <List inverted divided relaxed>
-                            {  this.state.CityList.map((cList, id) => {
+                            {  this.state.CityList.map((cList, index) => {
                                 return (
-                                    <List.Item onChange={this.deleteCity.bind(this, id)} key = {cList.id}>
+                                    <List.Item onClick ={this.deleteCity.bind(this, index)} key = {cList.id}>
                                         {cList.name}
                                     </List.Item>
                                 )
@@ -64,13 +60,14 @@ class Background extends Component {
                     </Segment>
                 </div>
 
+{/*****************************************LOCATIONS*********************************************/}
 
                 <div onClick = {this.matchCity.bind(this, 'Liepaja')} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '70.5%',
                 left: '5%',
-                }} >
+                }}>
                     <i className=' large red map marker alternate icon'></i>
                 </div>
 
@@ -79,7 +76,7 @@ class Background extends Component {
                 textAlign: 'right',
                 top: '54.5%',
                 left: '36.5%',
-                }} >
+                }}>
                     <i className=' large red map marker alternate icon'></i>
                 </div>
 
@@ -211,7 +208,7 @@ class Background extends Component {
 
                 </div>
 
-{/**Label */}
+{/**********************************************Label***********************************************/}
                 <div style={{
                 position: 'absolute',
                 textAlign: 'right',
@@ -229,7 +226,7 @@ class Background extends Component {
                     </Grid>
                 </div>
 
-{/**Marks */}
+{/***********************************************Marks********************************************/}
                 <div className='output' style={{
                     position: 'absolute',
                     textAlign: 'right',
