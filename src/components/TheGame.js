@@ -1,49 +1,70 @@
 import React, {Component} from 'react';
 import { Grid, Image, Input, List, Segment} from 'semantic-ui-react';
-import { Object } from 'core-js';
 
 class Background extends Component {
 
     constructor (props) {
         super (props)
-        this.ref = React.createRef();
+            this.ref = React.createRef();
     }
 
     state = {
-        open: false,
         CityList: [
             {id: 1, name:'Liepaja'},{id: 2, name:'Kuldiga'},{id: 3, name:'Saldus'},{id: 4, name:'Ventspils'}, {id: 5, name:'Jurmala'}, {id: 6, name:'Jelgava'}, {id: 7, name:'Riga'}, {id: 8, name:'Ainazi'}, {id: 9, name:'Ogre'}, {id: 10, name:'Valmiera'}, {id: 11, name:'Jekabpils'},{id: 12, name:'Madona'},{id: 13, name:'Draugavpils'},{id: 14, name:'Aluksne'},{id: 15, name:'Rezekne'},{id: 16, name:'Kraslava'}
         ],
     }
 
-//Functions
+//FUNCTION
+
+    deleteCity = (index, e) => {
+        const del = Object.assign([], this.state.CityList)
+        del.splice(index, 1);
+        this.setState({CityList: del})
+    }
+
     matchCity = (city) => {
         this.state.CityList.forEach((cityList) => {
             if (cityList.name === city) {
-                console.log('You picked city ' + city);
-            }
-            else {
-                console.log('Sorry! Please try again.');
+                alert('You picked city: ' + city );
+                this.deleteCity.bind(this, cityList.id);
             }
         })
     }
 
-    deleteCity = (index, e) => {
-        const delCity = Object.assign([], this.state.CityList)
-        delCity.splice(index, 1);
-        this.setState({CityList: delCity})
-    }
-
-//END FUNCTIONS
-
     render() {
         return (
-            <div className='latvianMap'>
-                <h3 style={{fontSize: '60px', color: 'red', marginLeft:'2%'}}>
-                    Latvia
-                </h3>
-                <Image src='https://simplemaps.com/static/svg/lv/lv.svg' style={{height:'100%', marginLeft:'5%', }} />
-                
+            <div>
+
+{ /**MAIN MAP */ }
+                <div className = 'latvianMap' >
+                    <h3 style={{fontSize: '60px', color: 'red', marginLeft:'2%'}}>
+                        Latvia
+                    </h3>
+                    <Image src='https://simplemaps.com/static/svg/lv/lv.svg' style={{height:'100%', marginLeft:'5%', }} />
+                </div>
+
+{/**CITY LIST */}
+                <div className='cityList' style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '12%',
+                left: '82%',
+                }}>
+
+                    <Segment inverted size='big'>
+                        <List inverted divided relaxed>
+                            {  this.state.CityList.map((cList, id) => {
+                                return (
+                                    <List.Item onChange={this.deleteCity.bind(this, id)} key = {cList.id}>
+                                        {cList.name}
+                                    </List.Item>
+                                )
+                            })}
+                        </List>
+                    </Segment>
+                </div>
+
+
                 <div onClick = {this.matchCity.bind(this, 'Liepaja')} style={{
                 position: 'absolute',
                 textAlign: 'right',
@@ -89,7 +110,7 @@ class Background extends Component {
                     <i className=' large red map marker alternate icon'></i>
                 </div>
 
-                <div onClick={this.matchCity.bind(this, 'Jelgave')} style={{
+                <div onClick={this.matchCity.bind(this, 'Jelgava')} style={{
                 position: 'absolute',
                 textAlign: 'right',
                 top: '67%',
@@ -206,32 +227,6 @@ class Background extends Component {
                             />
                         </Grid.Column>
                     </Grid>
-                </div>
-
-{/**City list */}
-                <div className='cityList' style={{
-                position: 'absolute',
-                textAlign: 'right',
-                top: '12%',
-                left: '82%',
-                }}>
-
-                    <Segment inverted size='big'>
-                        <List inverted divided relaxed>
-                            {
-                                this.state.CityList.map((list, id) => {
-                                    return ( 
-                                        <List.Item 
-                                            delcity = {this.deleteCity.bind(this, id)}
-                                            key = {list.id}
-                                        >
-                                            {list.name} 
-                                        </List.Item>
-                                            )
-                                })
-                            }
-                        </List>
-                    </Segment>
                 </div>
 
 {/**Marks */}
