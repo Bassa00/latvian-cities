@@ -1,325 +1,283 @@
-import React, { Component } from "react";
-import { Grid, Image, Input, List, Segment } from "semantic-ui-react";
+import React, {Component} from 'react';
+import { Grid, Image, List, Segment, Popup } from "semantic-ui-react";
 
 class Background extends Component {
-  state = {
-    CityList: [
-      { id: 0, name: "Liepaja" },
-      { id: 1, name: "Kuldiga" },
-      { id: 2, name: "Saldus" },
-      { id: 3, name: "Ventspils" },
-      { id: 4, name: "Jurmala" },
-      { id: 5, name: "Jelgava" },
-      { id: 6, name: "Riga" },
-      { id: 7, name: "Ainazi" },
-      { id: 8, name: "Ogre" },
-      { id: 9, name: "Valmiera" },
-      { id: 10, name: "Jekabpils" },
-      { id: 11, name: "Madona" },
-      { id: 12, name: "Daugavpils" },
-      { id: 13, name: "Aluksne" },
-      { id: 14, name: "Rezekne" },
-      { id: 15, name: "Kraslava" }
-    ]
-  };
 
-  /********************************************FUNCTION*********************************/
+    state = {
+        CityList: [
+            { id: 0, name: 'Liepaja' }, { id: 1, name: 'Kuldiga' }, { id: 2, name: 'Saldus' },
+            { id: 3, name: 'Ventspils' }, { id: 4, name: 'Jurmala' }, { id: 5, name: 'Jelgava' },
+            { id: 6, name: 'Riga' }, { id: 7, name: 'Ainazi' }, { id: 8, name: 'Ogre' },
+            { id: 9, name: 'Valmiera' }, { id: 10, name: 'Jekabpils' }, { id: 11, name: 'Madona' },
+            { id: 12, name:'Daugavpils'},{id: 13, name:'Aluksne'},{id: 14, name:'Rezekne'},{id: 15, name:'Kraslava'}
+        ],
+    }
 
-  deleteCity = index => {
-    const del = Object.assign([], this.state.CityList);
-    del.splice(index, 1);
-    this.setState({ CityList: del });
-  };
+/********************************************FUNCTION*********************************/
 
-  matchCity = city => {
-    this.state.CityList.forEach(cityList => {
-      if (cityList.name === city) {
-        alert(
-          "You picked city: " + city + ' Select "OK" to remove it from the list'
-        );
-        this.deleteCity(cityList.id);
-      }
-    });
-  };
-  /*************************************END FUNCTIONS*****************************************/
-  render() {
-    return (
-      <div>
-        {/*********************************MAIN MAP*************************************************/}
+    deleteCity = (index) => {
+        const del = Object.assign([], this.state.CityList)
+        del.splice(index, 1);
+        this.setState({CityList: del})
+    }
 
-        <div className="latvianMap">
-          <h3 style={{ fontSize: "60px", color: "red", marginLeft: "2%" }}>
-            Latvia
-          </h3>
-          <Image
-            src="https://simplemaps.com/static/svg/lv/lv.svg"
-            style={{ height: "100%", marginLeft: "5%" }}
-          />
-        </div>
+    matchCity = (city) => {
+        this.state.CityList.forEach((cityList) => {
+            if (cityList.name === city) {
+                alert('You picked city: ' + city + ' Select "OK" to remove it from the list' );
+                this.deleteCity(cityList.id);
+            }
+        })
+    }
 
-        {/*****************************************CITY LIST*********************************************/}
-        <div
-          className="cityList"
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "12%",
-            left: "82%"
-          }}
-        >
-          <Segment inverted size="big">
-            <List inverted divided relaxed>
-              {this.state.CityList.map((cList, index) => {
-                return (
-                  <List.Item
-                    onClick={this.deleteCity.bind(this, index)}
-                    key={cList.id}
-                  >
-                    {cList.name}
-                  </List.Item>
-                );
-              })}
-            </List>
-          </Segment>
-        </div>
+    onHover = () => {
+        this.state.CityList.forEach((cityList) => {
+            return(cityList.details);
+        })
+    }
 
-        {/*****************************************LOCATIONS*********************************************/}
+/*************************************END FUNCTIONS*****************************************/
+    render() {
+        return (
+            <div>
 
-        <div
-          onClick={this.matchCity.bind(this, "Liepaja")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "70.5%",
-            left: "5%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
+{ /*********************************MAIN MAP*************************************************/ }
 
-        <div
-          onClick={this.matchCity.bind(this, "Riga")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "54.5%",
-            left: "36.5%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
+                <div className = 'latvianMap' >
+                    <h3 style={{ fontSize: '48px', color: 'red', marginLeft: '2%',}}>
+                        Latvia
+                    </h3>
+                </div>
+                <div>
+                    <Image src='https://simplemaps.com/static/svg/lv/lv.svg' style={{ height: '100%', marginLeft: '5%', }} />
+                </div>
 
-        <div
-          onClick={this.matchCity.bind(this, "Jurmala")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "54%",
-            left: "32.5%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
+{/**********************************************Label***********************************************/}
 
-        <div
-          onClick={this.matchCity.bind(this, "Ventspils")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "37.5%",
-            left: "11%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Daugavpils")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "96.8%",
-            left: "60.7%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Jelgava")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "67%",
-            left: "32.5%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Valmiera")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "32%",
-            left: "50%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Aluksne")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "36%",
-            left: "65%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Saldus")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "67%",
-            left: "18%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Kraslava")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "91.7%",
-            left: "67.5%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Rezekne")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "69.7%",
-            left: "69%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Jekabpils")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "69.7%",
-            left: "55.9%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Kuldiga")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "52.2%",
-            left: "14.5%"
-          }}
-        >
-          <i className=" large red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Ogre")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "61.5%",
-            left: "41%"
-          }}
-        >
-          <i className=" large red red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Ainazi")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "19.5%",
-            left: "38.3%"
-          }}
-        >
-          <i className=" large red red map marker alternate icon" />
-        </div>
-
-        <div
-          onClick={this.matchCity.bind(this, "Madona")}
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "59%",
-            left: "58.3%"
-          }}
-        >
-          <i className=" large red red map marker alternate icon" />
-        </div>
-
-        {/**********************************************Label***********************************************/}
-        <div
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "2%",
-            right: "20.5%"
-          }}
-        >
-          <Grid columns={2}>
-            <Grid.Column>
-              <Image
-                fluid
-                label={{
-                  as: "a",
-                  color: "red",
-                  content: "Select the city location",
-                  icon: "map signs",
-                  ribbon: true,
-                  size: "big"
+                <div style={{
+                    position: 'absolute',
+                    textAlign: 'right',
+                    top: '0%',
+                    right: '20.5%',
                 }}
-              />
-            </Grid.Column>
-          </Grid>
-        </div>
+                >
+                    <Grid columns={2}>
+                        <Grid.Column>
+                            <Image
+                                fluid
+                                label={{ as: 'a', color: 'red', content: 'Select the city location', icon: 'map signs', ribbon: true, size: 'big' }}
+                            />
+                        </Grid.Column>
+                    </Grid>
+                </div>
 
-        {/***********************************************Marks********************************************/}
-        <div
-          className="output"
-          style={{
-            position: "absolute",
-            textAlign: "right",
-            top: "92%",
-            left: "3%"
-          }}
-        >
-          <Segment inverted>
-            <Input inverted placeholder="marks" />
-          </Segment>
-        </div>
-      </div>
-    );
-  }
+{/*****************************************CITY LIST*********************************************/}
+
+                <div className='cityList' style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '9%',
+                left: '87%',
+                }}>
+
+                    <Segment inverted size='big'>
+                        <List inverted divided relaxed>
+                            {  this.state.CityList.map((cList, index) => {
+                                return (
+                                    <List.Item 
+                                        onClick={this.deleteCity.bind(this, index)} 
+                                        key={cList.id} 
+                                    >
+                                        {cList.name}
+                                    </List.Item>
+                                )
+                            })}
+                        </List>
+                    </Segment>
+                </div>
+
+{/*****************************************LOCATIONS*********************************************/}
+
+                <div id='liepaja' onClick = {this.matchCity.bind(this, 'Liepaja')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '67.5%',
+                left: '5%',
+                }} >
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 60.4 km² | Population: 69,443 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Riga')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '51.5%',
+                left: '36.5%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 304 km² | Population: 641,423 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Jurmala')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '50%',
+                left: '32.5%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 100 km² | Population: 48,606 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Ventspils')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '32.5%',
+                left: '10.5%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 55.4 km² | Population: 35,362 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Daugavpils')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '93.8%',
+                left: '60.7%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 72.48 km² | Population: 84,592 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Jelgava')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '61%',
+                left: '32.5%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 63 km² | Population: 56,743 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Valmiera')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '30%',
+                left: '50%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 19.35 km² | Population: 22,961 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Aluksne')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '33%',
+                left: '65%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 14.23 km² | Population: 6,930 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Saldus')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '63%',
+                left: '18%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 10.1 km² | Population: 10,311 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Kraslava')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '88.7%',
+                left: '67.5%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 8.5 km² | Population: 7,978 
+                    </Popup>
+
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Rezekne')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '65.7%',
+                left: '68%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 17.48 km² | Population: 28,174 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Jekabpils')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '66.7%',
+                left: '55.9%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 23 km² | Population: 22,412 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Kuldiga')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '49.2%',
+                left: '14.5%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 13.2 km² | Postal code: LV-330(1–3)
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Ogre')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '57.5%',
+                left: '41%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 13.58 km² | Population: 23,533 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Ainazi')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '17.5%',
+                left: '38.3%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 5 km² | Population: 711 
+                    </Popup>
+                </div>
+
+                <div onClick={this.matchCity.bind(this, 'Madona')} style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '56%',
+                left: '58.3%',
+                }}>
+                    <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
+                        Area: 10.5 km² | Postal code: LV-4801
+                    </Popup>
+
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Background;
