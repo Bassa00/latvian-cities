@@ -127,14 +127,14 @@ class Background extends Component {
     deleteCity = (index) => {
         const del = Object.assign([], this.state.CityList)
         del.splice(index, 1);
+        alert('You picked city: ' + this.state.CityList[index].name + ' Select "OK" to remove it from the list');
         this.setState({ CityList: del })
     }
 
     matchCity = (city) => {
         this.state.CityList.forEach((cityList) => {
             if (cityList.name === city) {
-                alert('You picked city: ' + city + ' Select "OK" to remove it from the list');
-                this.deleteCity(cityList.id);
+                this.deleteCity(cityList.name);
             }
         })
     }
@@ -153,13 +153,13 @@ class Background extends Component {
                 }}>
                     <Segment inverted size='big'>
                         <List inverted divided relaxed>
-                            {this.state.CityList.map((cList, index) => {
+                            {this.state.CityList.map((location, i) => {
                                 return (
                                     <List.Item
-                                    onClick={this.deleteCity.bind(this, index)}
-                                    key={cList.id}
+                                    onClick={this.matchCity.bind(this, location.name)}
+                                    key={location.id}
                                     >
-                                        {cList.name}
+                                        {location.name}
                                     </List.Item>
                                 )
                             })}
@@ -170,20 +170,20 @@ class Background extends Component {
 {/**LOCATIONS*/}
 
                 <div> 
-                    {this.state.CityList.map((location, i) => {
+                    {this.state.CityList.map((cList, index) => {
                         return ( 
-                            <div onClick = {this.matchCity.bind(this, location.name)}
-                            key = {location.id}
+                            <div onClick = {this.deleteCity.bind(this, index)}
+                            key = {cList.id}
                             style = {{
                                     position: 'absolute',
                                     textAlign: 'right',
-                                    top: location.top,
-                                    left: location.left,
+                                    top: cList.top,
+                                    left: cList.left,
                                 }}
                             >
                                 <Popup inverted trigger = { < i className = ' large red map marker alternate icon' / >
                                 }>
-                                {location.pops}
+                                {cList.pops}
                                 </Popup> 
                             </div>
                         )
