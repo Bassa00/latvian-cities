@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Image, List, Segment, Popup } from "semantic-ui-react";
+import { List, Segment, Popup } from "semantic-ui-react";
+
+import Map from './Map'
 
 class Background extends Component {
 
@@ -120,7 +122,7 @@ class Background extends Component {
         ],
     }
 
-    /********************************************FUNCTION*********************************/
+//FUNCTION
 
     deleteCity = (index) => {
         const del = Object.assign([], this.state.CityList)
@@ -137,93 +139,69 @@ class Background extends Component {
         })
     }
 
-    /*************************************END FUNCTIONS*****************************************/
+//END FUNCTIONS
+
     render() {
-        return (
-            <div>
+    return (
+        <div>
+            <Map />
+            <div className='cityList' style={{
+            position: 'absolute',
+            textAlign: 'right',
+            top: '9%',
+            left: '87%',
+            }}>
+                <Segment inverted size='big'>
+                    <List inverted divided relaxed>
+                        {this.state.CityList.map((cList, index) => {
+                            return (
+                                <List.Item
+                                onClick={this.deleteCity.bind(this, index)}
+                                key={cList.id}
+                                >
+                                    {cList.name}
+                                </List.Item>
+                            )
+                        })}
+                    </List>
+                </Segment>
+            </div>
 
-                { /*********************************MAIN MAP*************************************************/}
+    {/**LOCATIONS*/}
 
-                <div className='latvianMap' >
-                    <h3 style={{ fontSize: '48px', color: 'red', marginLeft: '2%', }}>
-                        Latvia
-                    </h3>
-                </div>
-                <div>
-                    <Image src='https://simplemaps.com/static/svg/lv/lv.svg' style={{ height: '100%', marginLeft: '5%', }} />
-                </div>
-
-                {/**********************************************Label***********************************************/}
-
-                <div style={{
-                    position: 'absolute',
-                    textAlign: 'right',
-                    top: '0%',
-                    right: '20.5%',
-                }}
-                >
-                    <Grid columns={2}>
-                        <Grid.Column>
-                            <Image
-                                fluid
-                                label={{ as: 'a', color: 'red', content: 'Select the city location', icon: 'map signs', ribbon: true, size: 'big' }}
-                            />
-                        </Grid.Column>
-                    </Grid>
-                </div>
-
-                {/*****************************************CITY LIST*********************************************/}
-
-                <div className='cityList' style={{
-                    position: 'absolute',
-                    textAlign: 'right',
-                    top: '9%',
-                    left: '87%',
-                }}>
-
-                    <Segment inverted size='big'>
-                        <List inverted divided relaxed>
-                            {this.state.CityList.map((cList, index) => {
-                                return (
-                                    <List.Item
-                                        onClick={this.deleteCity.bind(this, index)}
-                                        key={cList.id}
-                                    >
-                                        {cList.name}
-                                    </List.Item>
-                                )
-                            })}
-                        </List>
-                    </Segment>
-                </div>
-
-        {/*****************************************LOCATIONS*********************************************/}
-
-                <div>
-                    {this.state.CityList.map((location, i) => {
-                        return (
-                            <div
-                                onClick={this.matchCity.bind(this, location.name)}
-                                key={location.id}
-                                style={{
+            < div > {
+                    this.state.CityList.map((location, i) => {
+                        return ( <
+                            div onClick = {
+                                this.matchCity.bind(this, location.name)
+                            }
+                            key = {
+                                location.id
+                            }
+                            style = {
+                                {
                                     position: 'absolute',
                                     textAlign: 'right',
                                     top: location.top,
                                     left: location.left,
-                                }}
-                            >
-                                <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
-                                    {location.pops}
+                                }
+                            } >
+                            <
+                            Popup inverted trigger = { < i className = ' large red map marker alternate icon' / >
+                            } > {
+                                location.pops
+                            }
 
-                                </Popup>
-                            </div>
+                            <
+                            /Popup> <
+                            /div>
                         )
-                    })}
-                </div>
-
-            </div>
-        );
-    }
+                    })
+                } <
+                /div>
+        </div>
+    );
+  }
 }
 
 export default Background;
