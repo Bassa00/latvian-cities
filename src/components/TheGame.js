@@ -5,11 +5,118 @@ class Background extends Component {
 
     state = {
         CityList: [
-            { id: 0, name: 'Liepaja' }, { id: 1, name: 'Kuldiga' }, { id: 2, name: 'Saldus' },
-            { id: 3, name: 'Ventspils' }, { id: 4, name: 'Jurmala' }, { id: 5, name: 'Jelgava' },
-            { id: 6, name: 'Riga' }, { id: 7, name: 'Ainazi' }, { id: 8, name: 'Ogre' },
-            { id: 9, name: 'Valmiera' }, { id: 10, name: 'Jekabpils' }, { id: 11, name: 'Madona' },
-            { id: 12, name:'Daugavpils'},{id: 13, name:'Aluksne'},{id: 14, name:'Rezekne'},{id: 15, name:'Kraslava'}
+            {
+                id: 0,
+                name: 'Liepaja',
+                top: '67.5%',
+                left: '5%',
+                pops: 'Area: 60.4 km² | Population: 69,443',
+            },
+            {
+                id: 1,
+                name: 'Kuldiga',
+                top: '49.2%',
+                left: '14.5%',
+                pops: 'Area: 13.2 km² | Postal code: LV-330(1–3)',
+            },
+            {
+                id: 2,
+                name: 'Saldus',
+                top: '63%',
+                left: '18%',
+                pops: 'Area: 10.1 km² | Population: 10,311',
+            },
+            {
+                id: 3,
+                name: 'Ventspils',
+                top: '32.5%',
+                left: '10.5%',
+                pops: 'Area: 55.4 km² | Population: 35,362',
+            },
+            {
+                id: 4,
+                name: 'Jurmala',
+                top: '50%',
+                left: '32.5%',
+                pops: 'Area: 100 km² | Population: 48,606',
+            },
+            {
+                id: 5,
+                name: 'Jelgava',
+                top: '61%',
+                left: '32.5%',
+                pops: 'Area: 63 km² | Population: 56,743',
+            },
+            {
+                id: 6,
+                name: 'Riga',
+                top: '51.5%',
+                left: '36.5%',
+                pops: 'Area: 304 km² | Population: 641,423',
+            },
+            {
+                id: 7,
+                name: 'Ainazi',
+                top: '17.5%',
+                left: '38.3%',
+                pops: 'Area: 5 km² | Population: 711',
+            },
+            {
+                id: 8,
+                name: 'Ogre',
+                top: '57.5%',
+                left: '41%',
+                pops: 'Area: 13.58 km² | Population: 23,533',
+            },
+            {
+                id: 9,
+                name: 'Valmiera',
+                top: '30%',
+                left: '50%',
+                pops: 'Area: 19.35 km² | Population: 22,961',
+            },
+            {
+                id: 10,
+                name: 'Jekabpils',
+                top: '66.7%',
+                left: '55.9%',
+                pops: 'Area: 23 km² | Population: 22,412',
+            },
+            {
+                id: 11,
+                name: 'Madona',
+                top: '56%',
+                left: '58.3%',
+                pops: 'Area: 10.5 km² | Postal code: LV-4801',
+            },
+            {
+                id: 12,
+                name: 'Daugavpils',
+                top: '93.8%',
+                left: '60.7%',
+                pops: 'Area: 72.48 km² | Population: 84,592',
+            },
+            {
+                id: 13,
+                name: 'Aluksne',
+                top: '33%',
+                left: '65%',
+                pops: 'Area: 14.23 km² | Population: 6,930',
+            },
+            {
+                id: 14,
+                name: 'Rezekne',
+                top: '65.7%',
+                left: '68%',
+                pops: 'Area: 17.48 km² | Population: 28,174',
+            },
+            {
+                id: 15,
+                name: 'Kraslava',
+                top: '88.7%',
+                left: '67.5%',
+                pops: 'Area: 8.5 km² | Population: 7,978',
+            }
         ],
     }
 
@@ -98,14 +205,38 @@ class Background extends Component {
 
 {/*****************************************LOCATIONS*********************************************/}
 
-                <div id='liepaja' onClick = {this.matchCity.bind(this, 'Liepaja')} style={{
-                position: 'absolute',
-                textAlign: 'right',
-                top: '67.5%',
-                left: '5%',
-                }} >
+                <div>
+                    {this.state.CityList.map((location, i) => {
+                        return (
+                            <div 
+                                onClick={this.matchCity.bind(this, location.name)}
+                                key={location.id} 
+                                style={{
+                                    position: 'absolute',
+                                    textAlign: 'right',
+                                    top: location.top,
+                                    left: location.left,
+                                }}
+                            >
+                                <Popup inverted trigger = {<i className=' large red map marker alternate icon' />}>
+                                    {location.pops}
+
+                                </Popup>
+                            </div>
+                        )    
+                    })}
+                </div>
+
+
+{/** 
+                <div onClick={this.matchCity.bind(this, 'Liepaja')} style={{
+                    position: 'absolute',
+                    textAlign: 'right',
+                    top: '67.5%', 
+                    left: '5%',
+                }}>
                     <Popup inverted trigger={<i className=' large red map marker alternate icon' />}>
-                        Area: 60.4 km² | Population: 69,443 
+                        Area: 60.4 km² | Population: 69,443
                     </Popup>
                 </div>
 
@@ -275,6 +406,7 @@ class Background extends Component {
                     </Popup>
 
                 </div>
+*/}
             </div>
         );
     }
