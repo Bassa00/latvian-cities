@@ -6,10 +6,11 @@ const Map = () => {
         <div>
 
 {/**MAP */}
-            <div className = 'latvianMap' >
-                <h3 style={{ fontSize: '48px', color: 'red', marginLeft: '2%',}}>
-                    Latvia
-                </h3>
+            <div className = 'latvianMap' style={{display:'inline'}} >
+                <p style={{ fontSize: '39px', color: 'red', marginLeft: '2%',}}>
+                    <Image width='8%' style={{display:'inline'}}src='http://beststickers.net/image/cache/catalog/products/vinyl/latvia/latvian-flag-map-coat-of-arms-car-stickerd-decal-vinyl-2800x1600.png' />Latvia 
+                </p>
+                
             </div>
             
             <div>
