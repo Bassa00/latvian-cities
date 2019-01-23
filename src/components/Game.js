@@ -142,66 +142,56 @@ class Background extends Component {
 //END FUNCTIONS
 
     render() {
-    return (
-        <div>
-            <Map />
-            <div className='cityList' style={{
-            position: 'absolute',
-            textAlign: 'right',
-            top: '9%',
-            left: '87%',
-            }}>
-                <Segment inverted size='big'>
-                    <List inverted divided relaxed>
-                        {this.state.CityList.map((cList, index) => {
-                            return (
-                                <List.Item
-                                onClick={this.deleteCity.bind(this, index)}
-                                key={cList.id}
-                                >
-                                    {cList.name}
-                                </List.Item>
-                            )
-                        })}
-                    </List>
-                </Segment>
-            </div>
+        return (
+            <div>
+                <Map />
+                <div className='cityList' style={{
+                position: 'absolute',
+                textAlign: 'right',
+                top: '9%',
+                left: '87%',
+                }}>
+                    <Segment inverted size='big'>
+                        <List inverted divided relaxed>
+                            {this.state.CityList.map((cList, index) => {
+                                return (
+                                    <List.Item
+                                    onClick={this.deleteCity.bind(this, index)}
+                                    key={cList.id}
+                                    >
+                                        {cList.name}
+                                    </List.Item>
+                                )
+                            })}
+                        </List>
+                    </Segment>
+                </div>
 
-    {/**LOCATIONS*/}
+{/**LOCATIONS*/}
 
-            < div > {
-                    this.state.CityList.map((location, i) => {
-                        return ( <
-                            div onClick = {
-                                this.matchCity.bind(this, location.name)
-                            }
-                            key = {
-                                location.id
-                            }
-                            style = {
-                                {
+                <div> 
+                    {this.state.CityList.map((location, i) => {
+                        return ( 
+                            <div onClick = {this.matchCity.bind(this, location.name)}
+                            key = {location.id}
+                            style = {{
                                     position: 'absolute',
                                     textAlign: 'right',
                                     top: location.top,
                                     left: location.left,
-                                }
-                            } >
-                            <
-                            Popup inverted trigger = { < i className = ' large red map marker alternate icon' / >
-                            } > {
-                                location.pops
-                            }
-
-                            <
-                            /Popup> <
-                            /div>
+                                }}
+                            >
+                                <Popup inverted trigger = { < i className = ' large red map marker alternate icon' / >
+                                }>
+                                {location.pops}
+                                </Popup> 
+                            </div>
                         )
-                    })
-                } <
-                /div>
-        </div>
-    );
-  }
+                    })} 
+                </div>
+            </div>
+        );
+    }
 }
 
 export default Background;
